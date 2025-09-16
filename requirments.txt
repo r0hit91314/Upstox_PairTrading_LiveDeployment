@@ -1,0 +1,5 @@
+pyotp
+selenium
+dotenv
+upstox-python-sdk
+schedule
