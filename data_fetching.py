@@ -7,13 +7,13 @@ from shared_queue import tick_queue
 from datetime import datetime, time as dtime
 import time
 
-path = os.path.abspath("acess_token.env")
-load_dotenv(path)
+# path = os.path.abspath("acess_token.env")
+# load_dotenv(path)
 
 
-access_token = os.getenv("ACCESS_TOKEN")
-if not access_token:
-    raise ValueError("ACCESS_TOKEN environment variable is not set.")
+# access_token = os.getenv("ACCESS_TOKEN")
+# if not access_token:
+#     raise ValueError("ACCESS_TOKEN environment variable is not set.")
 
 
 def hist_data(instrument_key , interval , interval_unit , end , start ):
@@ -172,7 +172,7 @@ def live_data( ticker1 , ticker2 , hedge_ratio):
 
 
 
-def live_data_queue(ticker1 , ticker2 , hedge_ratio):
+def live_data_queue(ticker1 , ticker2 , hedge_ratio):         # MORE EFFICIENT THAN CSV METHOD
     
     path = os.path.abspath("acess_token.env")
     load_dotenv(path)

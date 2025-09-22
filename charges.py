@@ -24,10 +24,10 @@ def charges_delivery(access_token , ticker , quantity , price_):
 
     api_instance = upstox_client.ChargeApi(upstox_client.ApiClient(configuration))
     instrument_token = get_instrument_key(ticker , "equity")
-    quantity = quantity
-    product = 'D'
-    transaction_type  = "BUY"
-    price = price_
+    quantity = quantity          # quantity to buy or sell
+    product = 'D'                 # 'D'- delivery
+    transaction_type  = "BUY"     # enter "SELL" , if you want to sell
+    price = price_                # price at which you want the trade
 
 
     try:
@@ -40,7 +40,7 @@ def charges_delivery(access_token , ticker , quantity , price_):
 
     return api_response.data.charges.total
 
-def margins(access_token , ticker , quantity_):
+def margins(access_token , ticker , quantity_):          # ONLY FOR COMPUTING MARGINS FOR  FUTURES
     lot_size = get_lot_size(ticker)
     configuration = upstox_client.Configuration()
     configuration.access_token = access_token
@@ -55,7 +55,7 @@ def margins(access_token , ticker , quantity_):
     margin = api_response.data.final_margin
     return margin    
 
-def margins_intraday(access_token , ticker , quantity_):
+def margins_intraday(access_token , ticker , quantity_):           # ONLY FOR COMPUTING MARGINS FOR INTRADAY
     configuration = upstox_client.Configuration()
     configuration.access_token = access_token
     api_instance = upstox_client.ChargeApi(upstox_client.ApiClient(configuration))

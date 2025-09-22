@@ -38,20 +38,20 @@ from shared_queue import tick_queue
 
 def schedule_token_refresh():
     schedule1 = schedule.Scheduler()
-    schedule1.every().day.at("15:35").do(set_access_token)   # 1 min before your 08:35 jobs
+    schedule1.every().day.at("15:35").do(set_access_token)   # EACH TOKEN IS VALID FOR A DAY 
     while True:
         schedule1.run_pending()
         time.sleep(1)
 
 
 def schedule_live_data(ticker1, ticker2, hedge_ratio):
-    """Schedules live_data_queue to run everyday at 09:05"""
+    """Schedules live_data_queue to run everyday at 09:13"""
 
     schedule2 = schedule.Scheduler()
     # Schedule job for all days
-    schedule2.every().day.at("13:52").do(live_data_queue, ticker1, ticker2, hedge_ratio)
+    schedule2.every().day.at("09:13").do(live_data_queue, ticker1, ticker2, hedge_ratio)  # RECOMMENDED SCHEDULE 1 MIN BEFORE THE EXECUTION OF LOGIC.
 
-    print("Scheduler started... Waiting for next run at 09:05 everyday.")
+    print("Scheduler started... Waiting for next run at 09:13 everyday.")
 
     # Run loop forever
     while True:
@@ -62,7 +62,7 @@ def run_algotrading(ticker1 , ticker2 , hedge_ratio , window):
 
     state = {"position": 0}
     schedule3 = schedule.Scheduler()
-    schedule3.every().day.at("13:53").do(trading_day_queue
+    schedule3.every().day.at("09:14").do(trading_day_queue
      , ticker1 , ticker2 , hedge_ratio , window , state)
 
     while True:
@@ -73,7 +73,7 @@ def run_algotrading(ticker1 , ticker2 , hedge_ratio , window):
 
 # EXECUTION OF THE ALGORITHM
 if __name__ == "__main__":
-    # set_access_token(api , secret , redirected_url , state_access , mobile_number , pin , otp)
+    
     logging.basicConfig(
     level=logging.DEBUG,  # change to DEBUG if you want more detail
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     )
     # Run both functions asynchronously
     ticker1 = "NHPC"
-    ticker2 = "PFC"
+    ticker2 = "PFC"          # COME UP WITH TICKERS AFTER RESEARCHING FROM THE PAIRS_TRADING_RESEARCH FILE.
     hedge_ratio  = 0.202760
     prepare_historical_data(ticker1 , ticker2 , hedge_ratio)
     t0 = threading.Thread(target=schedule_token_refresh, daemon=True)
