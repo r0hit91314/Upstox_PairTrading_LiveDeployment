@@ -17,7 +17,7 @@ The project includes modules for **data fetching, strategy execution, order plac
 - **Live Data Fetching**: Pulls real-time market data using the Upstox API.  
 - **Automated Execution**: Places and manages orders automatically based on strategy signals.  
 - **Risk Management**: Includes brokerage and transaction charge calculation to ensure realistic performance tracking.  
-- **Research Notebooks**: Provides Jupyter notebooks (`PAIRS_TRADING_RESEARCH.ipynb`, `options_strategy.ipynb`) for backtesting and experimentation.  
+- **Research Notebooks**: Provides Jupyter notebooks (`PAIRS_TRADING_RESEARCH.ipynb`) for backtesting and experimentation.  
 - **Configurable Environment**: API keys, tokens, and parameters are easily managed through environment files (`.env`, `access_token.env`).  
 - **Scalable Design**: Modular code structure (`data_fetching.py`, `execution.py`, `order.py`, etc.) allows easy extension and integration with other strategies.  
 
@@ -86,7 +86,7 @@ pip install -r requirmnts.txt
 ## 🔹 USAGE  
 
 ### Pre-requisites  
-- You must have an **Upstox Pro/Plus account** with API access enabled.  
+- You must have an **Upstox Pro/Plus account** with API access enabled.
 
 ### Steps to Follow  
 

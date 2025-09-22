@@ -118,8 +118,8 @@ def trading_day(access_token , ticker1, ticker2, hedge_ratio, window, state):
         except Exception as e:
             logging.error(f"Order book fetch failed: {e}")
 
-        amount = 100000     # JUST FOR DRY RUNNING NEED TO REMOVE IN REAL CODE 
-        n = math.floor((amount * 0.8) / (entry_price_y + hedge_ratio * entry_price_x))
+        #amount = 100000     # JUST FOR DRY RUNNING NEED TO REMOVE IN REAL CODE 
+        n = math.floor((amount * 0.8) / (entry_price_y + hedge_ratio * entry_price_x))  #USING 80% OF THE TOTAL CAPITAL
         shares_y = n
         shares_x = math.floor(hedge_ratio * n)
         logging.info(f"Calculated position size: {shares_y} shares of {ticker1}, {shares_x} shares of {ticker2}")
@@ -240,7 +240,7 @@ def trading_day_queue(ticker1, ticker2, hedge_ratio, window, state):
     # Intraday monitoring loop
     while True:
         current_time = datetime.now().time()
-        if current_time >= datetime.strptime("15:00:00", "%H:%M:%S").time():
+        if current_time >= datetime.strptime("15:00:00", "%H:%M:%S").time():  # CLOSING POSITIONS AT 3:00PM
             logging.info("Exiting all positions before market close")
             try:
                 if state["position"] == 1:
